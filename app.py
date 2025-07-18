@@ -48,6 +48,13 @@ def vampirizar(message):
     # Aqui você deve adicionar a lógica para "vampirizar" a música da vítima
     bot.reply_to(message, f"Vampirizando {vitima_lastfm}!")
 
+# Webhook para receber atualizações do Telegram
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    update = telebot.types.Update.de_json(request.get_json())
+    bot.process_new_updates([update])
+    return 'OK', 200
+
 # Inicia o Flask na porta 8080
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
