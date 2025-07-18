@@ -48,6 +48,6 @@ def vampirizar(message):
     # Aqui você deve adicionar a lógica para "vampirizar" a música da vítima
     bot.reply_to(message, f"Vampirizando {vitima_lastfm}!")
 
-# Inicia o bot
+# Inicia o Flask na porta 8080
 if __name__ == "__main__":
-    bot.polling()
+    app.run(host='0.0.0.0', port=8080)
